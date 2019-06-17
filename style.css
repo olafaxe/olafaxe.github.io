@@ -1,3 +1,44 @@
-.test {
-  background-color: blue;
+.container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header header header"
+    ". main main main main ."
+    "footer footer footer footer footer footer";
+  background-color: #00ff00;
 }
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.navbar-content {
+  display: flex;
+}
+.navbar-content h2 {
+  flex: 1;
+}
+.footer-content {
+  display: flex;
+}
+.footer-content h4 {
+  flex: 1;
+}
+/* .container {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+} */
