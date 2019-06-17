@@ -1,2 +1,2 @@
 # ola-sandbox
-Repository for my projects
+Repository for my project
