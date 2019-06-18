@@ -16,7 +16,7 @@ body {
     ". header header header header ."
     ". . . . . ."
     ". headline headline headline headline ."
-    "main main main main main main"
+    ". . . . . ."
     ". footer footer footer footer .";
   background-color: #f3fffc;
 }
@@ -47,6 +47,12 @@ body {
   font-size: 75px;
 }
 
+@media screen and (max-width: 768px) {
+  .headline {
+    font-size: 25px;
+  }
+}
+
 .headline h1 {
   color: #ffffff;
   text-shadow: 3px 3px 6px #26856d;
@@ -55,19 +61,6 @@ body {
   grid-area: main;
   display: flex;
   text-align: center;
-}
-
-.content-content {
-  width: 100%;
-  height: 100%;
-  /* background-image: url("image/background.png"); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  text-align: center;
-  vertical-align: middle;
-  justify-content: center;
-  align-items: center;
 }
 
 .content-content h1 {
@@ -87,16 +80,6 @@ body {
   margin: 0;
   flex: 1;
 }
-
-/* .container {
-  display: grid;
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "header header header header"
-    "main main . sidebar"
-    "footer footer footer footer";
-} */
 
 .fa-facebook {
   color: #26856d;
