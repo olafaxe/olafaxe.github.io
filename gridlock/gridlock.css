@@ -1,0 +1,36 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 25px);
+  grid-template-rows: repeat(2, 25px);
+  grid-template-areas:
+    "box1 box2"
+    "box3 box4";
+}
+
+.box1 {
+  grid-area: box1;
+  background-color: red;
+}
+
+.box2 {
+  grid-area: box2;
+  background-color: blue;
+}
+.box3 {
+  grid-area: box3;
+  background-color: green;
+}
+.box4 {
+  grid-area: box4;
+  background-color: yellow;
+}
+
+.locked {
+  background-color: grey;
+}
