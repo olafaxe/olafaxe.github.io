@@ -3,34 +3,115 @@ html {
   margin: 0;
   padding: 0;
 }
-
-.container {
+body {
+  height: 100%;
+}
+.gameboard {
   display: grid;
-  grid-template-columns: repeat(2, 25px);
-  grid-template-rows: repeat(2, 25px);
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
-    "box1 box2"
-    "box3 box4";
+    " . . . . . "
+    " . . main . . "
+    " . . . . . ";
+}
+.container {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(4, 50px);
+  gap: 4px;
+  grid-template-areas:
+    "box1 box2 box5 box10"
+    "box3 box4 box6 box11"
+    "box7 box8 box9 box12"
+    "box13 box14 box15 box16";
 }
 
 .box1 {
   grid-area: box1;
-  background-color: red;
+  background-color: #c4c4c4;
 }
 
 .box2 {
   grid-area: box2;
-  background-color: blue;
+  background-color: #c4c4c4;
 }
 .box3 {
   grid-area: box3;
-  background-color: green;
+  background-color: #c4c4c4;
 }
 .box4 {
   grid-area: box4;
-  background-color: yellow;
+  background-color: #c4c4c4;
+}
+.box5 {
+  grid-area: box5;
+  background-color: #c4c4c4;
+}
+.box6 {
+  grid-area: box6;
+  background-color: #c4c4c4;
+}
+.box7 {
+  grid-area: box7;
+  background-color: #c4c4c4;
+}
+.box8 {
+  grid-area: box8;
+  background-color: #c4c4c4;
+}
+.box9 {
+  grid-area: box9;
+  background-color: #c4c4c4;
+}
+.box10 {
+  grid-area: box10;
+  background-color: #c4c4c4;
 }
 
+.box11 {
+  grid-area: box11;
+  background-color: #c4c4c4;
+}
+.box12 {
+  grid-area: box12;
+  background-color: #c4c4c4;
+}
+.box13 {
+  grid-area: box13;
+  background-color: #c4c4c4;
+}
+.box14 {
+  grid-area: box14;
+  background-color: #c4c4c4;
+}
+.box15 {
+  grid-area: box15;
+  background-color: #c4c4c4;
+}
+.box16 {
+  grid-area: box16;
+  background-color: #c4c4c4;
+}
+
+@keyframes blink {
+  from {
+    background-color: #c4c4c4;
+    opacity: 0.7;
+  }
+  to {
+    background-color: yellow;
+    opacity: 0.9;
+  }
+}
+.target {
+  animation: blink 1s infinite;
+}
 .locked {
-  background-color: grey;
+  background-color: darkgreen;
+}
+
+.miss {
+  background-color: red;
 }
