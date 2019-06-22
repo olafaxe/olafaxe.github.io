@@ -3,6 +3,7 @@
 // your code here
 
 let gridBox = document.querySelector(".container");
+let startButton = document.querySelector(".startbutton-button");
 const target = { target: "" };
 
 gridBox.addEventListener("mousedown", event => {
@@ -19,7 +20,9 @@ gridBox.addEventListener("mousedown", event => {
   }
   console.log("clicked in grid", event.target.id);
 });
-
+startButton.addEventListener("click", event => {
+  startGame();
+});
 function startGame() {
   let tempNum = getRandomInt(15);
   let targetBox = "box" + tempNum;

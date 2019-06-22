@@ -11,9 +11,15 @@ body {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
-    " . . . . . "
+    " . . startbut . . "
     " . . main . . "
     " . . . . . ";
+}
+.startbutton {
+  grid-area: startbut;
+}
+.startbutton-button {
+  margin: 25%;
 }
 .container {
   grid-area: main;
