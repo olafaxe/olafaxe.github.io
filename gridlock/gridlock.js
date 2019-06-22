@@ -1,19 +1,34 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-  // your code here
+"use strict";
+// document.addEventListener("DOMContentLoaded", function() {
+// your code here
 
-  let gridBox = document.querySelector(".container");
-  let box1 = document.querySelector("#box1");
+let gridBox = document.querySelector(".container");
+const target = { target: "" };
 
-  gridBox.addEventListener("mousedown", event => {
-    let targetBox = "box1";
-    let clickBox = event.target.id;
-    let boxSelect = document.querySelector("#" + clickBox);
-    if (event.target.id == targetBox) {
-      box1.classList.add("locked");
-      box1.classList.remove("target");
-    } else {
-      boxSelect.classList.add("miss");
-    }
-    console.log("clicked in grid", event.target.id);
-  });
+gridBox.addEventListener("mousedown", event => {
+  console.log(target["target"]);
+  let clickBox = event.target.id;
+  let boxSelect = document.querySelector("#" + clickBox);
+  let targetBox = document.querySelector("#" + target["target"]);
+  if (event.target.id == target["target"]) {
+    boxSelect.classList.add("locked");
+    boxSelect.classList.remove("target");
+  } else {
+    boxSelect.classList.add("miss");
+    targetBox.classList.remove("target");
+  }
+  console.log("clicked in grid", event.target.id);
 });
+
+function startGame() {
+  let tempNum = getRandomInt(15);
+  let targetBox = "box" + tempNum;
+  let boxSelect = document.querySelector("#" + targetBox);
+  boxSelect.classList.add("target");
+  target["target"] = targetBox;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max) + 1);
+}
+// });
