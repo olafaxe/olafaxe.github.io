@@ -31,11 +31,18 @@ body {
 }
 
 .countdown {
-  font-size: 50px;
+  font-size: 100px;
   position: absolute;
   top: -214px;
   left: 62px;
 }
+.game-text {
+  font-size: 100px;
+  position: absolute;
+  top: -265px;
+  left: -114px;
+}
+
 .container {
   grid-area: main;
   display: grid;
@@ -148,6 +155,53 @@ body {
     opacity: 0.5;
   }
 }
+
+@keyframes gridlock {
+  from {
+    color: lightgreen;
+    opacity: 1;
+  }
+  25% {
+    color: green;
+    opacity: 0.5;
+  }
+  50% {
+    color: lightgreen;
+    opacity: 0.5;
+  }
+  75% {
+    color: green;
+    opacity: 0.5;
+  }
+  to {
+    color: lightgreen;
+    opacity: 1;
+  }
+}
+
+@keyframes gameover {
+  from {
+    color: black;
+    opacity: 1;
+  }
+  50% {
+    color: red;
+    opacity: 0.5;
+  }
+  to {
+    color: black;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .target {
   animation: blink 1s infinite;
 }
@@ -158,4 +212,16 @@ body {
 
 .miss {
   animation: missblink 1s;
+}
+
+.gridlock-feeling {
+  animation-name: gridlock, fadein;
+  animation-duration: 8s, 4s;
+  animation-iteration-count: infinite, 1;
+}
+
+.gameover-feeling {
+  animation-name: gameover, fadein;
+  animation-duration: 4s, 4s;
+  animation-iteration-count: infinite, 1;
 }

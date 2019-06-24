@@ -4,34 +4,32 @@
 
 let gridBox = document.querySelector(".container");
 let startButton = document.querySelector(".startbutton-button");
+let countDown = document.querySelector(".countdown");
+let gameText = document.querySelector(".game-text");
+
 const target = { target: "" };
 let tempArr = [];
 let gameProgress = false;
 let endGame = false;
 let remove = false;
 let strikes = 0;
+let clickLock = false;
 
 let actionClickDebounce = debounce(event => {
-  if (event.target.id === "" || !gameProgress) {
+  if (event.target.id === "" || !gameProgress || clickLock) {
     return;
   }
+  clickLock = true;
   console.log(event.target.id);
   let tempNum = getRandomInt(3000);
   console.log(target["target"]);
   let clickBox = event.target.id;
   let boxSelect = document.querySelector("#" + clickBox);
   let targetBox = document.querySelector("#" + target["target"]);
-  let countDown = document.querySelector(".countdown");
-  if (strikes == 3) {
-    gameProgress = false;
-    countDown.innerHTML = "GAME OVER!";
-    boxSelect.classList.remove("target");
-    reset();
-    return;
-  }
 
   if (tempArr.length === 16) {
-    countDown.innerHTML = "GRIDLOCKED!";
+    gameText.innerHTML = "GRID LOCK!";
+    gameText.classList.add("gridlock-feeling");
     gameProgress = false;
     boxSelect.classList.add("locked");
     boxSelect.classList.remove("target");
@@ -45,6 +43,14 @@ let actionClickDebounce = debounce(event => {
     setTimeout(startGame, tempNum);
   } else {
     strikes++;
+    if (strikes == 3) {
+      gameProgress = false;
+      gameText.innerHTML = "GAME OVER!";
+      gameText.classList.add("gameover-feeling");
+      boxSelect.classList.remove("target");
+      reset();
+      return;
+    }
     remove = true;
     boxSelect.classList.add("miss");
     setTimeout(() => {
@@ -57,58 +63,11 @@ let actionClickDebounce = debounce(event => {
 }, 250);
 
 gridBox.addEventListener("mousedown", actionClickDebounce);
-gridBox.addEventListener("mousedown", event => {
-  console.log(event.target.id);
-});
-
-// gridBox.addEventListener("mousedown", event => {
-//   if (event.target.id === "" || !gameProgress) {
-//     return;
-//   }
-//   console.log(event.target.id);
-//   let tempNum = getRandomInt(3000);
-//   console.log(target["target"]);
-//   let clickBox = event.target.id;
-//   let boxSelect = document.querySelector("#" + clickBox);
-//   let targetBox = document.querySelector("#" + target["target"]);
-//   let countDown = document.querySelector(".countdown");
-//     if (strikes == 3) {
-//       gameProgress = false;
-//       countDown.innerHTML = "GAME OVER!";
-//       boxSelect.classList.remove("target");
-//       reset();
-//       return;
-//     }
-
-//       if (tempArr.length === 16) {
-//         countDown.innerHTML = "GRIDLOCKED!";
-//         gameProgress = false;
-//         boxSelect.classList.add("locked");
-//         boxSelect.classList.remove("target");
-
-//         return;
-//       }
-
-//         if (event.target.id == target["target"]) {
-//           boxSelect.classList.add("locked");
-//           boxSelect.classList.remove("target");
-//           setTimeout(startGame, tempNum);
-//         } else {
-//           strikes++;
-//           remove = true;
-//           boxSelect.classList.add("miss");
-//           setTimeout(() => {
-//             boxSelect.classList.remove("miss");
-//           }, 2000);
-//           targetBox.classList.remove("target");
-//           setTimeout(startGame, tempNum);
-//         }
-//   console.log("clicked in grid", event.target.id);
-// });
 
 ////////////////////////7
 
 function startGame() {
+  clickLock = false;
   if (remove) {
     tempArr.pop();
     remove = false;
@@ -147,6 +106,9 @@ function randomIntFromInterval(min, max) {
 
 startButton.addEventListener("click", event => {
   if (!gameProgress) {
+    gameText.innerHTML = "";
+    gameText.classList.remove("gridlock-feeling");
+    gameText.classList.remove("gameover-feeling");
     reset();
     for (let i = 1; i < tempArr.length + 1; i++) {
       let targetBox = "#box" + i;
@@ -171,26 +133,6 @@ startButton.addEventListener("click", event => {
     setTimeout(startGame, 3000);
   }
   gameProgress = true;
-
-  // for (let i = 1; i < tempArr.length + 1; i++) {
-  //   let targetBox = "#box" + i;
-  //   let boxSelect = document.querySelector(targetBox);
-  //   boxSelect.classList.remove("locked");
-  // }
-  // tempArr = [];
-  // let num = 3;
-  // let countDown = document.querySelector(".countdown");
-  // countDown.innerHTML = num;
-  // let countDownTimer = setInterval(() => {
-  //   num--;
-  //   countDown.innerHTML = num;
-
-  //   if (num === 0) {
-  //     clearInterval(countDownTimer);
-  //     countDown.innerHTML = "";
-  //   }
-  // }, 1000);
-  // setTimeout(startGame, 3000);
 });
 
 function reset() {
