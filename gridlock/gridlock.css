@@ -5,6 +5,7 @@ html {
 }
 body {
   height: 100%;
+  font-family: "Press Start 2P", cursive;
 }
 .gameboard {
   display: grid;
@@ -13,13 +14,27 @@ body {
   grid-template-areas:
     " . . startbut . . "
     " . . main . . "
-    " . . . . . ";
+    " . . count . . ";
 }
 .startbutton {
   grid-area: startbut;
 }
 .startbutton-button {
   margin: 25%;
+}
+.countdown-container {
+  grid-area: count;
+  /* z-index: 9999; */
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+.countdown {
+  font-size: 50px;
+  position: absolute;
+  top: -214px;
+  left: 62px;
 }
 .container {
   grid-area: main;
@@ -111,13 +126,36 @@ body {
     opacity: 0.9;
   }
 }
+
+@keyframes lockblink {
+  from {
+    background-color: lightgreen;
+    opacity: 0.7;
+  }
+  to {
+    background-color: darkgreen;
+    opacity: 1;
+  }
+}
+
+@keyframes missblink {
+  from {
+    background-color: red;
+    opacity: 1;
+  }
+  to {
+    background-color: black;
+    opacity: 0.5;
+  }
+}
 .target {
   animation: blink 1s infinite;
 }
 .locked {
+  animation: lockblink 1s;
   background-color: darkgreen;
 }
 
 .miss {
-  background-color: red;
+  animation: missblink 1s;
 }
