@@ -19,11 +19,12 @@ body {
 .startbutton {
   grid-area: startbut;
   margin-top: 75px;
+  margin-left: 25px;
 }
 .startbutton-button {
   background-color: #689ca3;
   box-shadow: 3px 3px 3px #3c5a5e;
-  margin: 25px;
+  margin: 0px;
   text-align: center;
   width: 155px;
   height: 55px;
@@ -60,9 +61,11 @@ body {
   left: -114px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
   .game-text {
     font-size: 50px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    position: absolute;
     top: -187px;
     left: 3px;
   }
