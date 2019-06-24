@@ -18,9 +18,25 @@ body {
 }
 .startbutton {
   grid-area: startbut;
+  margin-top: 75px;
 }
 .startbutton-button {
-  margin: 25%;
+  background-color: #689ca3;
+  box-shadow: 3px 3px 3px #3c5a5e;
+  margin: 25px;
+  text-align: center;
+  width: 155px;
+  height: 55px;
+}
+.startbutton-button h2 {
+  color: lightgrey;
+  padding: 5px;
+  cursor: default;
+}
+.start-animation {
+  animation-name: loading, fadein;
+  animation-duration: 1s, 2s;
+  animation-iteration-count: infinite, 1;
 }
 .countdown-container {
   grid-area: count;
@@ -38,9 +54,18 @@ body {
 }
 .game-text {
   font-size: 100px;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
   position: absolute;
   top: -265px;
   left: -114px;
+}
+
+@media screen and (max-width: 320px) {
+  .game-text {
+    font-size: 50px;
+    top: -187px;
+    left: 3px;
+  }
 }
 
 .container {
@@ -126,11 +151,15 @@ body {
 @keyframes blink {
   from {
     background-color: #c4c4c4;
-    opacity: 0.7;
+    opacity: 1;
+  }
+  50% {
+    background-color: yellow;
+    opacity: 1;
   }
   to {
-    background-color: yellow;
-    opacity: 0.9;
+    background-color: #c4c4c4;
+    opacity: 1;
   }
 }
 
@@ -158,24 +187,25 @@ body {
 
 @keyframes gridlock {
   from {
-    color: lightgreen;
-    opacity: 1;
+    color: #cccccc;
+    opacity: 0;
   }
   25% {
-    color: green;
-    opacity: 0.5;
+    color: #cccccc;
+    opacity: 1;
   }
+
   50% {
-    color: lightgreen;
-    opacity: 0.5;
+    color: #cccccc;
+    opacity: 1;
   }
   75% {
-    color: green;
-    opacity: 0.5;
+    color: #cccccc;
+    opacity: 1;
   }
   to {
-    color: lightgreen;
-    opacity: 1;
+    color: #cccccc;
+    opacity: 0;
   }
 }
 
@@ -198,12 +228,36 @@ body {
   from {
     opacity: 0;
   }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
   to {
     opacity: 1;
   }
 }
+
+@keyframes loading {
+  from {
+    color: #ffffff;
+    opacity: 1;
+  }
+  50% {
+    color: yellow;
+    opacity: 0.5;
+  }
+  to {
+    color: #ffffff;
+    opacity: 1;
+  }
+}
 .target {
-  animation: blink 1s infinite;
+  animation: blink 0.5s infinite;
 }
 .locked {
   animation: lockblink 1s;
@@ -215,9 +269,9 @@ body {
 }
 
 .gridlock-feeling {
-  animation-name: gridlock, fadein;
-  animation-duration: 8s, 4s;
-  animation-iteration-count: infinite, 1;
+  animation-name: gridlock;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
 }
 
 .gameover-feeling {

@@ -6,6 +6,7 @@ let gridBox = document.querySelector(".container");
 let startButton = document.querySelector(".startbutton-button");
 let countDown = document.querySelector(".countdown");
 let gameText = document.querySelector(".game-text");
+let newGameBtn = document.querySelector(".start-startBtn");
 
 const target = { target: "" };
 let tempArr = [];
@@ -28,11 +29,12 @@ let actionClickDebounce = debounce(event => {
   let targetBox = document.querySelector("#" + target["target"]);
 
   if (tempArr.length === 16) {
-    gameText.innerHTML = "GRID LOCK!";
+    gameText.innerHTML = "GRID LOCK";
     gameText.classList.add("gridlock-feeling");
     gameProgress = false;
     boxSelect.classList.add("locked");
     boxSelect.classList.remove("target");
+    newGameBtn.classList.add("start-animation");
 
     return;
   }
@@ -45,9 +47,10 @@ let actionClickDebounce = debounce(event => {
     strikes++;
     if (strikes == 3) {
       gameProgress = false;
-      gameText.innerHTML = "GAME OVER!";
+      gameText.innerHTML = "GAME OVER";
       gameText.classList.add("gameover-feeling");
       boxSelect.classList.remove("target");
+      newGameBtn.classList.add("start-animation");
       reset();
       return;
     }
@@ -105,6 +108,7 @@ function randomIntFromInterval(min, max) {
 }
 
 startButton.addEventListener("click", event => {
+  newGameBtn.classList.remove("start-animation");
   if (!gameProgress) {
     gameText.innerHTML = "";
     gameText.classList.remove("gridlock-feeling");
