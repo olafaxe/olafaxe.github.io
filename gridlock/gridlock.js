@@ -24,6 +24,7 @@ let timerInterval;
 highScorifier();
 
 let actionClickDebounce = debounce(event => {
+  console.log(tempArr);
   if (event.target.id === "" || !gameProgress || clickLock) {
     return;
   }
@@ -34,9 +35,9 @@ let actionClickDebounce = debounce(event => {
   let targetBox = document.querySelector("#" + target["target"]);
 
   if (tempArr.length === 16) {
-    timeStopper();
     gameWin(boxSelect);
     highScorifier();
+    timeStopper();
     return;
   }
 
@@ -52,6 +53,7 @@ let actionClickDebounce = debounce(event => {
     if (strikes == 3) {
       gameLose(boxSelect);
       highScorifier();
+      timeStopper();
       reset();
       return;
     }
@@ -140,7 +142,7 @@ function timeSetter() {
     diff = 50;
   } else if (tempArr.length >= 12 && tempArr.length < 16) {
     console.log("hard");
-    diff = 15;
+    diff = 25;
   }
   timerInterval = setInterval(timer, diff);
 }
@@ -148,6 +150,8 @@ function timeSetter() {
 function timer() {
   scoreNum--;
   if (scoreNum === 0) {
+    timeStopper();
+    tempArr.pop();
     scoreNum = 100;
     strikes++;
     if (strikes === 3) {
@@ -155,7 +159,6 @@ function timer() {
       gameText.innerHTML = "GAME OVER";
       gameText.classList.add("gameover-feeling");
       newGameBtn.classList.add("start-animation");
-      timeStopper(true);
       for (let i = 0; i < tempArr.length; i++) {
         let k = tempArr[i];
         let targetBox = document.querySelector("#box" + k);
@@ -168,11 +171,9 @@ function timer() {
       let targetBox = document.querySelector("#box" + k);
       targetBox.classList.remove("target");
     }
-    timeStopper();
     let tempNum = randomIntFromInterval(500, 4000);
     setTimeout(startGame, tempNum);
   }
-  console.log(scoreNum);
 }
 
 function timeStopper() {
@@ -280,11 +281,14 @@ function hitClick(boxSelect) {
 ////////////////////////////////////////
 
 function highScorifier() {
+  console.log("hs start");
   let oldScore = localStorage.getItem("highscore");
-  highScore.innerHTML = oldScore;
+  highScore.innerHTML = `Highsore: ${oldScore}`;
   let score = Number(scoreOutput.innerHTML);
   if (score > oldScore) {
-    localStorage.setItem("highscore", `Highscore: ${score}`);
+    localStorage.removeItem("highscore");
+    localStorage.setItem("highscore", score);
+    highScore.innerHTML = `Highsore: ${score}`;
   }
   console.log(score);
 }
