@@ -1,12 +1,12 @@
 "use strict";
-// document.addEventListener("DOMContentLoaded", function() {
-// your code here
 
 let gridBox = document.querySelector(".container");
 let startButton = document.querySelector(".startbutton-button");
 let countDown = document.querySelector(".countdown");
 let gameText = document.querySelector(".game-text");
 let newGameBtn = document.querySelector(".start-startBtn");
+let scoreOutput = document.querySelector(".score-number");
+let highScore = document.querySelector(".highscore");
 
 const target = { target: "" };
 let tempArr = [];
@@ -15,99 +15,58 @@ let endGame = false;
 let remove = false;
 let strikes = 0;
 let clickLock = false;
+let scoreNum = 100;
+let scoreActual = [];
+let timerInterval;
+
+/////////////////////////
+/////////////////////////
+highScorifier();
 
 let actionClickDebounce = debounce(event => {
   if (event.target.id === "" || !gameProgress || clickLock) {
     return;
   }
   clickLock = true;
-  console.log(event.target.id);
-  let tempNum = getRandomInt(3000);
-  console.log(target["target"]);
+  let tempNum = randomIntFromInterval(500, 4000);
   let clickBox = event.target.id;
   let boxSelect = document.querySelector("#" + clickBox);
   let targetBox = document.querySelector("#" + target["target"]);
 
   if (tempArr.length === 16) {
-    gameText.innerHTML = "GRID LOCK";
-    gameText.classList.add("gridlock-feeling");
-    gameProgress = false;
-    boxSelect.classList.add("locked");
-    boxSelect.classList.remove("target");
-    newGameBtn.classList.add("start-animation");
-
+    timeStopper();
+    gameWin(boxSelect);
+    highScorifier();
     return;
   }
 
   if (event.target.id == target["target"]) {
-    boxSelect.classList.add("locked");
-    boxSelect.classList.remove("target");
+    timeStopper();
+    scoreCalc();
+    hitClick(boxSelect);
     setTimeout(startGame, tempNum);
   } else {
-    strikes++;
+    timeStopper();
+    scoreActual.pop();
+    missClick(boxSelect, targetBox);
     if (strikes == 3) {
-      gameProgress = false;
-      gameText.innerHTML = "GAME OVER";
-      gameText.classList.add("gameover-feeling");
-      boxSelect.classList.remove("target");
-      newGameBtn.classList.add("start-animation");
+      gameLose(boxSelect);
+      highScorifier();
       reset();
       return;
     }
-    remove = true;
-    boxSelect.classList.add("miss");
-    setTimeout(() => {
-      boxSelect.classList.remove("miss");
-    }, 2000);
-    targetBox.classList.remove("target");
     setTimeout(startGame, tempNum);
   }
-  console.log("clicked in grid", event.target.id);
 }, 250);
 
 gridBox.addEventListener("mousedown", actionClickDebounce);
 
 ////////////////////////7
 
-function startGame() {
-  clickLock = false;
-  if (remove) {
-    tempArr.pop();
-    remove = false;
-  }
-  let tempNum = randomIntFromInterval(1, 16);
-  function randomNummerLoop() {
-    for (let i = 0; i < tempArr.length; i++) {
-      if (tempArr[i] === tempNum || tempNum === 0) {
-        tempNum = randomIntFromInterval(i, 16);
-        randomNummerLoop();
-      }
-    }
-  }
-  randomNummerLoop();
-  tempArr.push(tempNum);
-  let targetBox = "box" + tempNum;
-  let boxSelect = document.querySelector("#" + targetBox);
-  // if (boxSelect.classList.contains("locked")) {
-  //   remove = true;
-  //   startGame();
-  // }
-  boxSelect.classList.remove("miss");
-  boxSelect.classList.add("target");
-  target["target"] = targetBox;
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-// });
-
-function randomIntFromInterval(min, max) {
-  // min and max included (stackoverflow)
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 startButton.addEventListener("click", event => {
+  highScorifier();
+  scoreOutput.innerHTML = "";
+  scoreActual = [];
   newGameBtn.classList.remove("start-animation");
   if (!gameProgress) {
     gameText.innerHTML = "";
@@ -139,6 +98,109 @@ startButton.addEventListener("click", event => {
   gameProgress = true;
 });
 
+////////////////////////
+///////FUNCTIONS////////
+////////////////////////
+
+function startGame() {
+  timeSetter();
+  clickLock = false;
+  if (remove) {
+    tempArr.pop();
+    remove = false;
+  }
+  let tempNum = randomIntFromInterval(1, 16);
+  function randomNummerLoop() {
+    for (let i = 0; i < tempArr.length; i++) {
+      if (tempArr[i] === tempNum || tempNum === 0) {
+        tempNum = randomIntFromInterval(i, 16);
+        randomNummerLoop();
+      }
+    }
+  }
+  randomNummerLoop();
+
+  tempArr.push(tempNum);
+  let targetBox = "box" + tempNum;
+  let boxSelect = document.querySelector("#" + targetBox);
+  boxSelect.classList.remove("miss");
+  boxSelect.classList.add("target");
+  target["target"] = targetBox;
+}
+
+////////////////////////////////////////
+
+function timeSetter() {
+  let diff;
+  if (tempArr.length < 8) {
+    console.log("easy");
+    diff = 100;
+  } else if (tempArr.length >= 8 && tempArr.length < 12) {
+    console.log("medium");
+    diff = 50;
+  } else if (tempArr.length >= 12 && tempArr.length < 16) {
+    console.log("hard");
+    diff = 15;
+  }
+  timerInterval = setInterval(timer, diff);
+}
+
+function timer() {
+  scoreNum--;
+  if (scoreNum === 0) {
+    scoreNum = 100;
+    strikes++;
+    if (strikes === 3) {
+      gameProgress = false;
+      gameText.innerHTML = "GAME OVER";
+      gameText.classList.add("gameover-feeling");
+      newGameBtn.classList.add("start-animation");
+      timeStopper(true);
+      for (let i = 0; i < tempArr.length; i++) {
+        let k = tempArr[i];
+        let targetBox = document.querySelector("#box" + k);
+        targetBox.classList.remove("target");
+      }
+      return;
+    }
+    for (let i = 0; i < tempArr.length; i++) {
+      let k = tempArr[i];
+      let targetBox = document.querySelector("#box" + k);
+      targetBox.classList.remove("target");
+    }
+    timeStopper();
+    let tempNum = randomIntFromInterval(500, 4000);
+    setTimeout(startGame, tempNum);
+  }
+  console.log(scoreNum);
+}
+
+function timeStopper() {
+  scoreActual.push(scoreNum);
+  scoreNum = 100;
+  clearInterval(timerInterval);
+}
+
+////////////////////////////////////////
+
+function scoreCalc() {
+  let scoreTotal = 0;
+  for (let i = 0; i < scoreActual.length; i++) {
+    scoreTotal = scoreTotal + scoreActual[i];
+  }
+
+  scoreOutput.innerHTML = scoreTotal;
+}
+
+///////////////////////////////////////
+
+function randomIntFromInterval(min, max) {
+  // min and max included (stackoverflow)
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+////////////////////////////////////////
+
 function reset() {
   for (let i = 0; i < tempArr.length; i++) {
     let k = tempArr[i];
@@ -151,19 +213,21 @@ function reset() {
   strikes = 0;
 }
 
+////////////////////////////////////////
+
 function debounce(func, wait, immediate) {
-  var timeout;
+  let timeout;
 
   return function executedFunction() {
-    var context = this;
-    var args = arguments;
+    let context = this;
+    let args = arguments;
 
-    var later = function() {
+    let later = function() {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
 
-    var callNow = immediate && !timeout;
+    let callNow = immediate && !timeout;
 
     clearTimeout(timeout);
 
@@ -171,4 +235,56 @@ function debounce(func, wait, immediate) {
 
     if (callNow) func.apply(context, args);
   };
+}
+
+////////////////////////////////////////
+
+function gameWin(boxSelect) {
+  gameText.innerHTML = "GRID LOCK";
+  gameText.classList.add("gridlock-feeling");
+  gameProgress = false;
+  boxSelect.classList.add("locked");
+  boxSelect.classList.remove("target");
+  newGameBtn.classList.add("start-animation");
+}
+
+////////////////////////////////////////
+
+function gameLose(boxSelect) {
+  gameProgress = false;
+  gameText.innerHTML = "GAME OVER";
+  gameText.classList.add("gameover-feeling");
+  boxSelect.classList.remove("target");
+  newGameBtn.classList.add("start-animation");
+}
+
+////////////////////////////////////////
+
+function missClick(boxSelect, targetBox) {
+  strikes++;
+  remove = true;
+  boxSelect.classList.add("miss");
+  setTimeout(() => {
+    boxSelect.classList.remove("miss");
+  }, 2000);
+  targetBox.classList.remove("target");
+}
+
+////////////////////////////////////////
+
+function hitClick(boxSelect) {
+  boxSelect.classList.add("locked");
+  boxSelect.classList.remove("target");
+}
+
+////////////////////////////////////////
+
+function highScorifier() {
+  let oldScore = localStorage.getItem("highscore");
+  highScore.innerHTML = oldScore;
+  let score = Number(scoreOutput.innerHTML);
+  if (score > oldScore) {
+    localStorage.setItem("highscore", `Highscore: ${score}`);
+  }
+  console.log(score);
 }
