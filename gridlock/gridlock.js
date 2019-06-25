@@ -150,27 +150,32 @@ function timeSetter() {
 function timer() {
   scoreNum--;
   if (scoreNum === 0) {
-    timeStopper();
     tempArr.pop();
     scoreNum = 100;
     strikes++;
+    timeStopper();
+    let timedOut = true;
     if (strikes === 3) {
+      if (!timedOut) {
+        timeStopper();
+      }
       gameProgress = false;
       gameText.innerHTML = "GAME OVER";
       gameText.classList.add("gameover-feeling");
       newGameBtn.classList.add("start-animation");
-      for (let i = 0; i < tempArr.length; i++) {
-        let k = tempArr[i];
-        let targetBox = document.querySelector("#box" + k);
+      for (let i = 1; i < 16; i++) {
+        let targetBox = document.querySelector("#box" + i);
         targetBox.classList.remove("target");
       }
       return;
     }
-    for (let i = 0; i < tempArr.length; i++) {
-      let k = tempArr[i];
-      let targetBox = document.querySelector("#box" + k);
+    for (let i = 1; i < 16; i++) {
+      console.log("test");
+      let targetBox = document.querySelector("#box" + i);
       targetBox.classList.remove("target");
     }
+
+    timeStopper();
     let tempNum = randomIntFromInterval(500, 4000);
     setTimeout(startGame, tempNum);
   }
