@@ -10,7 +10,7 @@ body {
 .gameboard {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 50px, 10px, 1fr, 1fr;
+  grid-template-rows: 75px 75px 1fr 1fr;
   grid-template-areas:
     " . . startbut . . "
     " . . highscore . ."

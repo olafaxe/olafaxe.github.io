@@ -35,9 +35,11 @@ let actionClickDebounce = debounce(event => {
   let targetBox = document.querySelector("#" + target["target"]);
 
   if (tempArr.length === 16) {
-    gameWin(boxSelect);
-    highScorifier();
     timeStopper();
+    scoreCalc();
+    hitClick(boxSelect);
+    highScorifier();
+    gameWin(boxSelect);
     return;
   }
 
@@ -190,6 +192,7 @@ function timeStopper() {
 ////////////////////////////////////////
 
 function scoreCalc() {
+  console.log("SCORE TRIGGER");
   let scoreTotal = 0;
   for (let i = 0; i < scoreActual.length; i++) {
     scoreTotal = scoreTotal + scoreActual[i];
