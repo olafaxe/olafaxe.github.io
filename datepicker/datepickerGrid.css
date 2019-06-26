@@ -1,0 +1,147 @@
+.dp-container {
+  display: grid;
+  grid-template-columns: repeat(8, 100px);
+  grid-template-rows: repeat(8, 100px);
+  grid-template-areas:
+    ". . year year year year . ."
+    ". . month month month month . ."
+    ". mon tue wed thu fri sat sun"
+    ". place1 place2 place3 place4 place5 place6 place7"
+    ". place8 place9 place10 place11 place12 place13 place14"
+    ". place15 place16 place17 place18 place19 place20 place21"
+    ". place22 place23 place24 place25 place26 place27 place28"
+    ". place29 place30 place31 place32 place33 place34 place35";
+}
+
+.year {
+  grid-area: year;
+}
+.month {
+  grid-area: month;
+}
+.mon {
+  grid-area: mon;
+}
+.tue {
+  grid-area: tue;
+}
+.wed {
+  grid-area: wed;
+}
+.thu {
+  grid-area: thu;
+}
+.fri {
+  grid-area: fri;
+}
+.sat {
+  grid-area: sat;
+}
+.sun {
+  grid-area: sun;
+}
+.place1 {
+  grid-area: place1;
+}
+.place2 {
+  grid-area: place2;
+}
+.place3 {
+  grid-area: place3;
+}
+.place4 {
+  grid-area: place4;
+}
+.place5 {
+  grid-area: place5;
+}
+.place6 {
+  grid-area: place6;
+}
+.place7 {
+  grid-area: place7;
+}
+.place8 {
+  grid-area: place8;
+}
+.place9 {
+  grid-area: place9;
+}
+.place10 {
+  grid-area: place10;
+}
+.place11 {
+  grid-area: place11;
+}
+.place12 {
+  grid-area: place12;
+}
+.place13 {
+  grid-area: place13;
+}
+.place14 {
+  grid-area: place14;
+}
+.place15 {
+  grid-area: place15;
+}
+.place16 {
+  grid-area: place16;
+}
+.place17 {
+  grid-area: place17;
+}
+.place18 {
+  grid-area: place18;
+}
+.place19 {
+  grid-area: place19;
+}
+.place20 {
+  grid-area: place20;
+}
+.place21 {
+  grid-area: place21;
+}
+.place22 {
+  grid-area: place22;
+}
+.place23 {
+  grid-area: place23;
+}
+.place24 {
+  grid-area: place24;
+}
+.place25 {
+  grid-area: place25;
+}
+.place26 {
+  grid-area: place26;
+}
+.place27 {
+  grid-area: place27;
+}
+.place28 {
+  grid-area: place28;
+}
+.place29 {
+  grid-area: place29;
+}
+.place30 {
+  grid-area: place30;
+}
+.place31 {
+  grid-area: place31;
+}
+.place32 {
+  grid-area: place32;
+}
+.place33 {
+  grid-area: place33;
+}
+.place34 {
+  grid-area: place34;
+}
+.place35 {
+  grid-area: place35;
+}

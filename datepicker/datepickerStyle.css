@@ -1,0 +1,43 @@
+html body {
+  margin: 0;
+  padding: 0;
+}
+
+.dp-container {
+  text-align: center;
+  vertical-align: middle;
+  cursor: default;
+}
+
+.year {
+  padding-top: 5%;
+  font-size: 40px;
+  height: 60px;
+}
+.yearSelect {
+  width: 100px;
+}
+.textSelect {
+  font-size: 30px;
+  height: 80px;
+}
+.monthSelect {
+  font-size: 25px;
+  width: 160px;
+}
+
+.textSelect option {
+  font-size: 15px;
+}
+.month {
+  font-size: 40px;
+}
+.dname {
+  font-size: 20px;
+  background-color: lightblue;
+}
+
+.date {
+  font-size: 20px;
+  background-color: lightgrey;
+}
