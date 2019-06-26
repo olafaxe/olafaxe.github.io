@@ -288,12 +288,16 @@ function hitClick(boxSelect) {
 function highScorifier() {
   console.log("hs start");
   let oldScore = localStorage.getItem("highscore");
-  highScore.innerHTML = `Highsore: ${oldScore}`;
+  if (!oldScore) {
+    highScore.innerHTML = `Highscore: 0`;
+  } else {
+    highScore.innerHTML = `Highscore: ${oldScore}`;
+  }
   let score = Number(scoreOutput.innerHTML);
   if (score > oldScore) {
     localStorage.removeItem("highscore");
     localStorage.setItem("highscore", score);
-    highScore.innerHTML = `Highsore: ${score}`;
+    highScore.innerHTML = `Highscore: ${score}`;
   }
   console.log(score);
 }

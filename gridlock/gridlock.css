@@ -72,8 +72,8 @@ body {
 .countdown {
   font-size: 100px;
   position: absolute;
-  top: -214px;
-  left: 62px;
+  top: -216px;
+  left: 68px;
   cursor: default;
 }
 .game-text {
@@ -89,12 +89,7 @@ body {
   left: 3px;
   cursor: default;
 }
-@media screen and (min-width: 1100px) {
-  .countdown {
-    top: -216px;
-    left: 88px;
-  }
-}
+
 @media screen and (max-width: 450px) {
   .game-text {
     font-size: 50px;
