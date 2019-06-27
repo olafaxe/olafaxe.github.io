@@ -32,7 +32,7 @@ closeBtn.addEventListener("click", () => {
   if (valueYear === "" || valueMonth === "" || valueDay === "") {
     return;
   } else {
-    getDateBtn.value = `${valueYear}\\${valueMonth}\\${valueDay}`;
+    getDateBtn.value = `${valueYear} / ${valueMonth} / ${valueDay}`;
   }
   // console.log("Final date: ", valueYear, valueMonth, valueDay);
 });
@@ -66,6 +66,10 @@ for (let i = 0; i < datePick.length; i++) {
       valueDay = "No day";
     } else {
       datePick[i].classList.add("selection");
+      datePick[i].classList.add("select-date");
+      setTimeout(() => {
+        datePick[i].classList.remove("select-date");
+      }, 1000);
       valueDay = datePick[i].textContent;
     }
   });

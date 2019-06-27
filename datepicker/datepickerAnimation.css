@@ -1,0 +1,15 @@
+@keyframes select {
+  from {
+    background-color: lightgreen;
+    opacity: 0.7;
+  }
+  to {
+    background-color: darkgreen;
+    opacity: 1;
+  }
+}
+
+.select-date {
+  animation: select 1s;
+  background-color: gray;
+}

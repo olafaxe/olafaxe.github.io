@@ -21,7 +21,7 @@
 @media screen and (max-width: 375px) {
   .dp-container {
     grid-template-columns: repeat(7, 40px);
-    grid-template-rows: 80px 80px repeat(6, 40px);
+    grid-template-rows: 60px 60px repeat(6, 40px);
   }
 }
 
