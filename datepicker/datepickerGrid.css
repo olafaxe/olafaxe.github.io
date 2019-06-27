@@ -1,18 +1,33 @@
 .dp-container {
   display: grid;
-  grid-template-columns: repeat(8, 100px);
+  grid-template-columns: repeat(7, 100px);
   grid-template-rows: repeat(8, 100px);
   grid-template-areas:
-    ". . year year year year . ."
-    ". . month month month month . ."
-    ". mon tue wed thu fri sat sun"
-    ". place1 place2 place3 place4 place5 place6 place7"
-    ". place8 place9 place10 place11 place12 place13 place14"
-    ". place15 place16 place17 place18 place19 place20 place21"
-    ". place22 place23 place24 place25 place26 place27 place28"
-    ". place29 place30 place31 place32 place33 place34 place35";
+    ". year year year year . close"
+    ". month month month month . ."
+    "mon tue wed thu fri sat sun"
+    "place1 place2 place3 place4 place5 place6 place7"
+    "place8 place9 place10 place11 place12 place13 place14"
+    "place15 place16 place17 place18 place19 place20 place21"
+    "place22 place23 place24 place25 place26 place27 place28"
+    "place29 place30 place31 place32 place33 place34 place35";
+}
+@media screen and (max-width: 768px) {
+  .dp-container {
+    grid-template-columns: repeat(7, 80px);
+    grid-template-rows: 80px 80px repeat(6, 80px);
+  }
+}
+@media screen and (max-width: 375px) {
+  .dp-container {
+    grid-template-columns: repeat(7, 40px);
+    grid-template-rows: 80px 80px repeat(6, 40px);
+  }
 }
 
+.close {
+  grid-area: close;
+}
 .year {
   grid-area: year;
 }

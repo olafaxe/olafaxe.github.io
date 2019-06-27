@@ -4,17 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="datepickerGrid.css" />
     <link rel="stylesheet" href="datepickerStyle.css" />
     <title>Datepicker</title>
   </head>
   <body>
+    <div class="btnCont">
+      <input class="dateBtn" placeholder="get date" />
+    </div>
+
     <div class="dp-container">
-      <div class="year">
-        <select class="yearSelect textSelect"> </select>
+      <div class="close"></div>
+      <div class="year selectBox">
+        <select class="yearSelect textSelect">
+          <option class="yPlaceholder" value="">Year</option>
+        </select>
       </div>
-      <div class="month">
-        <select class="monthSelect textSelect"> </select>
+      <div class="month selectBox">
+        <select class="monthSelect textSelect">
+          <option class="mPlaceholder" value="">Month</option>
+        </select>
       </div>
       <div class="dname mon"><p>mon</p></div>
       <div class="dname tue"><p>tue</p></div>
