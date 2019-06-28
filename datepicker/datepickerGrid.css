@@ -1,7 +1,7 @@
 .dp-container {
   display: grid;
-  grid-template-columns: repeat(7, 100px);
-  grid-template-rows: repeat(8, 100px);
+  grid-template-columns: repeat(7, 90px);
+  grid-template-rows: repeat(8, 90px);
   grid-template-areas:
     ". year year year year . close"
     ". month month month month . ."
