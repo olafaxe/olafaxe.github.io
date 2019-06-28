@@ -42,6 +42,7 @@ confirmBtn.addEventListener("mousedown", () => {
 });
 
 function confirmClick() {
+  let outputYear = valueYear;
   if (valueDay === "") {
     yearOutput.innerHTML = `yyyy-mm-dd`;
   } else {
@@ -52,7 +53,8 @@ function confirmClick() {
       typeof valueDay
     );
     console.log("print: ", valueYear, valueMonth, valueDay);
-    yearOutput.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
+    console.log(outputYear);
+    yearOutput.innerHTML = outputYear + "-" + valueMonth + "-" + valueDay;
   }
 
   dpContainer.style.display = "none";
@@ -182,7 +184,7 @@ function checkLeapYear(selYear) {
   if ((!(selYear % 4) && selYear % 100) || !(selYear % 400)) {
     leapYear = true;
   }
-  valueYear = Number(selYear);
+  valueYear = selYear;
 }
 
 function generateMonths() {
