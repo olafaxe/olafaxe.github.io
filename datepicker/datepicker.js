@@ -39,6 +39,8 @@ confirmBtn.addEventListener("mousedown", () => {
     confirmBtn.classList.remove("confirm-click");
   }, 1000);
   setTimeout(confirmClick, 1000);
+  let blabla = document.querySelector(".blabla");
+  blabla.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
 });
 
 closeBtn.addEventListener("click", () => {
