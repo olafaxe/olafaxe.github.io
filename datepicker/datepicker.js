@@ -72,9 +72,8 @@ closeBtn.addEventListener("click", () => {
 
 dpContainer.addEventListener("click", () => {});
 
-yearSelect.addEventListener("click", () => {
-  leapYear = false;
-  valueYear = yearSelect.value;
+yearSelect.addEventListener("click", event => {
+  valueYear = event.target.value;
   checkLeapYear(valueYear);
   valueMonth = monthSelect.value;
   if (dayLock) {
@@ -85,6 +84,8 @@ yearSelect.addEventListener("click", () => {
   } else {
     generateDays(valueMonth);
   }
+  console.log("when select year: ", valueYear);
+  console.log("when sel year type: ", typeof valueYear);
 });
 
 monthSelect.addEventListener("change", event => {
@@ -93,7 +94,7 @@ monthSelect.addEventListener("change", event => {
     removeDays(lastMonth);
   }
   generateDays(event.target.value);
-  valueMonth = monthSelect.value;
+  valueMonth = event.target.value;
   if (valueMonth < 10) {
     valueMonth = `0${valueMonth}`;
   }
@@ -176,6 +177,7 @@ function removeYears() {
 }
 
 function checkLeapYear(selYear) {
+  leapYear = false;
   if ((!(selYear % 4) && selYear % 100) || !(selYear % 400)) {
     leapYear = true;
   }
