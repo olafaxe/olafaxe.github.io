@@ -51,7 +51,7 @@ function confirmClick() {
       typeof valueDay
     );
     console.log("print: ", valueYear, valueMonth, valueDay);
-    getDateBtn.innerHTML = `${valueYear}-${valueMonth}-${valueDay}`;
+    getDateBtn.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
   }
 
   dpContainer.style.display = "none";
