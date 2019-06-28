@@ -15,10 +15,14 @@ body {
   z-index: 1;
 }
 .dateBtn {
-  width: 90px;
+  border: solid 5px lightblue;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 20px;
+  width: 200px;
   position: absolute;
   top: 250px;
-  left: 33%;
+  left: 20%;
   cursor: default;
 }
 

@@ -41,9 +41,16 @@ confirmBtn.addEventListener("click", () => {
 
 function confirmClick() {
   if (valueYear === "" || valueMonth === "" || valueDay === "") {
-    getDateBtn.value = `yyyy-mm-dd`;
+    getDateBtn.textContent = `yyyy-mm-dd`;
   } else {
-    getDateBtn.value = `${valueYear}-${valueMonth}-${valueDay}`;
+    console.log(
+      "types: ",
+      typeof valueYear,
+      typeof valueMonth,
+      typeof valueDay
+    );
+    console.log("print: ", valueYear, valueMonth, valueDay);
+    getDateBtn.textContent = `${valueYear}-${valueMonth}-${valueDay}`;
   }
   removeYears();
   dpContainer.style.display = "none";
