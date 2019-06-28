@@ -23,6 +23,7 @@ let leapYear = false;
 //////////////////////////////////////
 
 getDateBtn.addEventListener("click", () => {
+  reset();
   generateYears();
   generateMonths();
   dpContainer.style.display = "grid";
@@ -57,7 +58,6 @@ function confirmClick() {
   if (dayLock) {
     removeDays(lastMonth);
   }
-  reset();
 }
 
 closeBtn.addEventListener("click", () => {
@@ -106,26 +106,31 @@ monthSelect.addEventListener("change", event => {
 console.log(datePick);
 for (let i = 0; i < datePick.length; i++) {
   datePick[i].addEventListener("click", event => {
-    if (datePick[i].classList.contains("selection")) {
-      datePick[i].classList.remove("selection");
-      valueDay = "No day";
+    console.log(datePick[i].firstChild);
+    if (datePick[i].firstChild === null) {
+      return;
     } else {
-      datePick[i].classList.add("selection");
-      datePick[i].classList.add("select-date");
-
-      setTimeout(() => {
-        datePick[i].classList.remove("select-date");
-      }, 1000);
-      valueDay = datePick[i].textContent;
-      if (valueDay < 10) {
-        valueDay = `0${valueDay}`;
-      }
-      lastDay = datePick[i];
-    }
-
-    for (let i = 0; i < datePick.length; i++) {
-      if (datePick[i] != lastDay) {
+      if (datePick[i].classList.contains("selection")) {
         datePick[i].classList.remove("selection");
+        valueDay = "No day";
+      } else {
+        datePick[i].classList.add("selection");
+        datePick[i].classList.add("select-date");
+
+        setTimeout(() => {
+          datePick[i].classList.remove("select-date");
+        }, 1000);
+        valueDay = datePick[i].textContent;
+        if (valueDay < 10) {
+          valueDay = `0${valueDay}`;
+        }
+        lastDay = datePick[i];
+      }
+
+      for (let i = 0; i < datePick.length; i++) {
+        if (datePick[i] != lastDay) {
+          datePick[i].classList.remove("selection");
+        }
       }
     }
   });
