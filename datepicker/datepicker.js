@@ -148,7 +148,7 @@ function confirmClick() {
       typeof valueDay
     );
     console.log("print: ", valueYear, valueMonth, valueDay);
-    yearOutput.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
+    yearOutput.innerHTML = " " + valueYear + "-" + valueMonth + "-" + valueDay;
   }
 
   dpContainer.style.display = "none";
