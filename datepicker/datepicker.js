@@ -9,6 +9,7 @@ let getDateBtn = document.querySelector(".dateBtn");
 let closeBtn = document.querySelector(".close");
 let confirmBtn = document.querySelector(".confirm");
 let datePick = dpContainer.querySelectorAll(".date");
+let yearOutput = document.querySelector(".year-output");
 
 let valueYear = "";
 let valueMonth = "";
@@ -42,7 +43,7 @@ confirmBtn.addEventListener("mousedown", () => {
 
 function confirmClick() {
   if (valueDay === "") {
-    getDateBtn.innerHTML = `yyyy-mm-dd`;
+    yearOutput.innerHTML = `yyyy-mm-dd`;
   } else {
     console.log(
       "types: ",
@@ -51,7 +52,7 @@ function confirmClick() {
       typeof valueDay
     );
     console.log("print: ", valueYear, valueMonth, valueDay);
-    getDateBtn.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
+    yearOutput.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
   }
 
   dpContainer.style.display = "none";

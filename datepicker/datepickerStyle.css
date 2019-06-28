@@ -15,15 +15,22 @@ body {
   z-index: 1;
 }
 .dateBtn {
-  border: solid 5px lightcyan;
+  border: solid 5px lightslategray;
   border-radius: 10px;
   padding: 5px;
   font-size: 20px;
   width: 200px;
+  height: 40px;
   position: absolute;
   top: 250px;
   left: 20%;
   cursor: default;
+  text-align: center;
+}
+
+.year-output {
+  margin-top: 10px;
+  margin-bottom: auto;
 }
 
 .dp-container {
