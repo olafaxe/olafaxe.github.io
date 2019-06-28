@@ -8,25 +8,27 @@ let monthSelect = document.querySelector(".monthSelect");
 let getDateBtn = document.querySelector(".dateBtn");
 let closeBtn = document.querySelector(".close");
 let datePick = dpContainer.querySelectorAll(".date");
-let datePuck = dpContainer.getElementsByClassName(".date");
 
 let valueYear = "";
 let valueMonth = "";
 let valueDay = "";
 let dayLock;
 let lastMonth;
+let lastDay;
 let canPickDate = false;
+let leapYear = false;
 
 ///////////////////////////////////////
-generateYears();
-generateMonths();
 //////////////////////////////////////
 
 getDateBtn.addEventListener("click", () => {
+  generateYears();
+  generateMonths();
   dpContainer.style.display = "grid";
 });
 
 closeBtn.addEventListener("click", () => {
+  removeYears();
   dpContainer.style.display = "none";
 
   if (valueYear === "" || valueMonth === "" || valueDay === "") {
@@ -34,13 +36,18 @@ closeBtn.addEventListener("click", () => {
   } else {
     getDateBtn.value = `${valueYear} / ${valueMonth} / ${valueDay}`;
   }
+  removeDays(lastMonth);
+
+  reset();
   // console.log("Final date: ", valueYear, valueMonth, valueDay);
 });
 
 dpContainer.addEventListener("click", () => {});
 
 yearSelect.addEventListener("click", () => {
+  leapYear = false;
   valueYear = yearSelect.value;
+  checkLeapYear(valueYear);
 });
 
 monthSelect.addEventListener("change", event => {
@@ -67,25 +74,62 @@ for (let i = 0; i < datePick.length; i++) {
     } else {
       datePick[i].classList.add("selection");
       datePick[i].classList.add("select-date");
+
       setTimeout(() => {
         datePick[i].classList.remove("select-date");
       }, 1000);
       valueDay = datePick[i].textContent;
+      lastDay = datePick[i];
+    }
+
+    for (let i = 0; i < datePick.length; i++) {
+      if (datePick[i] != lastDay) {
+        datePick[i].classList.remove("selection");
+      }
     }
   });
+  console.log(lastDay);
 }
 
 /////////////////////////////////
 ///// FUNCTIONS /////////////////
 /////////////////////////////////
-
+function reset() {
+  valueYear = "";
+  valueMonth = "";
+  valueDay = "";
+  dayLock;
+  lastMonth;
+  canPickDate = false;
+  leapYear = false;
+}
 function generateYears() {
   let tempY = new Date();
   let year = tempY.getFullYear();
   for (let i = year; i > 1900; i--) {
     let opt = document.createElement("option");
+    opt.classList.add("tempYear");
     opt.innerHTML = i;
     yearSelect.appendChild(opt);
+  }
+  yearSelect.selectedIndex = "0";
+}
+
+function removeYears() {
+  let tempY = new Date();
+  let year = tempY.getFullYear();
+  for (let i = 1900; i < year; i++) {
+    let opt = document.querySelectorAll(".tempYear");
+    for (let i = 0; i < opt.length; i++) {
+      // console.log(opt[i]);
+      yearSelect.removeChild(opt[i]);
+    }
+  }
+}
+
+function checkLeapYear(selYear) {
+  if ((!(selYear % 4) && selYear % 100) || !(selYear % 400)) {
+    leapYear = true;
   }
 }
 
@@ -112,13 +156,18 @@ function generateMonths() {
 
     monthSelect.appendChild(opt);
   }
+  monthSelect.selectedIndex = "0";
 }
 
 function generateDays(valueMonth) {
   let monthKey;
 
   if (valueMonth == 2) {
-    monthKey = 28;
+    if (leapYear) {
+      monthKey = 29;
+    } else {
+      monthKey = 28;
+    }
   } else {
     if (valueMonth <= 7) {
       if (valueMonth % 2) {
@@ -152,6 +201,7 @@ function removeDays(monthKey) {
   for (let i = 1; i <= monthKey; i++) {
     let div = document.querySelector(".day" + i);
     let slot = document.querySelector(".place" + i);
+    slot.classList.remove("selection");
     slot.removeAttribute("value", i);
     slot.removeChild(div);
   }
