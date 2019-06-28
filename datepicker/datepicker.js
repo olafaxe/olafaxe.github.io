@@ -73,8 +73,8 @@ closeBtn.addEventListener("click", () => {
 dpContainer.addEventListener("click", () => {});
 
 yearSelect.addEventListener("click", event => {
-  valueYear = event.target.value;
-  checkLeapYear(valueYear);
+  let selectedYear = event.target.value;
+  checkLeapYear(selectedYear);
   valueMonth = monthSelect.value;
   if (dayLock) {
     removeDays(lastMonth);
@@ -181,6 +181,7 @@ function checkLeapYear(selYear) {
   if ((!(selYear % 4) && selYear % 100) || !(selYear % 400)) {
     leapYear = true;
   }
+  valueYear = Number(selYear);
 }
 
 function generateMonths() {

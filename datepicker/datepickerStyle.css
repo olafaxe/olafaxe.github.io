@@ -15,7 +15,7 @@ body {
   z-index: 1;
 }
 .dateBtn {
-  border: solid 5px lightblue;
+  border: solid 5px lightcoral;
   border-radius: 10px;
   padding: 5px;
   font-size: 20px;
@@ -182,7 +182,7 @@ body {
   }
   .close {
     top: 12px;
-    right: 2px;
+    right: 12px;
   }
 }
 
