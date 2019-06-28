@@ -29,15 +29,14 @@ getDateBtn.addEventListener("click", () => {
 });
 
 confirmBtn.addEventListener("mousedown", () => {
-  confirmClick();
-  // let confirmText = document.querySelector(".confirmText");
-  // confirmText.classList.add("confirm-clickText");
-  // confirmBtn.classList.add("confirm-click");
-  // setTimeout(() => {
-  //   confirmText.classList.remove("confirm-clickText");
-  //   confirmBtn.classList.remove("confirm-click");
-  // }, 1000);
-  // setTimeout(confirmClick, 1000);
+  let confirmText = document.querySelector(".confirmText");
+  confirmText.classList.add("confirm-clickText");
+  confirmBtn.classList.add("confirm-click");
+  setTimeout(() => {
+    confirmText.classList.remove("confirm-clickText");
+    confirmBtn.classList.remove("confirm-click");
+  }, 1000);
+  setTimeout(confirmClick, 1000);
 });
 
 function confirmClick() {
