@@ -53,7 +53,7 @@ closeBtn.addEventListener("click", () => {
   getDateBtn.value = `yyyy-mm-dd`;
 });
 
-yearSelect.addEventListener("click", event => {
+yearSelect.addEventListener("change", event => {
   let valueYear = event.target.value;
   checkLeapYear(valueYear);
   valueMonth = monthSelect.value;
