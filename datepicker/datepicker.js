@@ -10,6 +10,7 @@ let closeBtn = document.querySelector(".close");
 let confirmBtn = document.querySelector(".confirm");
 let datePick = dpContainer.querySelectorAll(".date");
 let yearOutput = document.querySelector(".year-output");
+let weekDayPlace = document.querySelectorAll(".dname");
 
 let valueYear = "";
 let valueMonth = "";
@@ -39,8 +40,6 @@ confirmBtn.addEventListener("mousedown", () => {
     confirmBtn.classList.remove("confirm-click");
   }, 1000);
   setTimeout(confirmClick, 1000);
-  let blabla = document.querySelector(".blabla");
-  blabla.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
 });
 
 closeBtn.addEventListener("click", () => {
@@ -64,18 +63,18 @@ yearSelect.addEventListener("click", event => {
   if (valueMonth === "") {
     return;
   } else {
-    generateDays(valueMonth);
+    generateDays(valueMonth, valueYear);
   }
   console.log("when select year: ", valueYear);
   console.log("when sel year type: ", typeof valueYear);
 });
 
 monthSelect.addEventListener("change", event => {
-  console.log(event.target.value);
+  valueMonth = event.target.value;
   if (dayLock) {
     removeDays(lastMonth);
   }
-  generateDays(event.target.value);
+  generateDays(valueMonth, valueYear);
   valueMonth = event.target.value;
   if (valueMonth < 10) {
     valueMonth = `0${valueMonth}`;
@@ -83,10 +82,8 @@ monthSelect.addEventListener("change", event => {
   canPickDate = true;
 });
 
-console.log(datePick);
 for (let i = 0; i < datePick.length; i++) {
   datePick[i].addEventListener("click", event => {
-    console.log(datePick[i].firstChild);
     if (datePick[i].firstChild === null) {
       return;
     } else {
@@ -114,7 +111,6 @@ for (let i = 0; i < datePick.length; i++) {
       }
     }
   });
-  console.log(lastDay);
 }
 
 /////////////////////////////////
@@ -139,6 +135,9 @@ function reset() {
 //////////////////////////////////
 
 function confirmClick() {
+  if (valueYear === "") {
+    console.log("DEBUGGING!");
+  }
   if (valueDay === "") {
     yearOutput.innerHTML = `yyyy-mm-dd`;
   } else {
@@ -224,7 +223,7 @@ function generateMonths() {
 
 //////////////////////////////////
 
-function generateDays(valueMonth) {
+function generateDays(valueMonth, valueYear) {
   let monthKey;
 
   if (valueMonth == 2) {
@@ -248,7 +247,11 @@ function generateDays(valueMonth) {
       }
     }
   }
+  let firstWeek = [];
   for (let i = 1; i <= monthKey; i++) {
+    if (i < 8) {
+      firstWeek.push(i);
+    }
     let div = document.createElement("div");
     div.textContent = i;
     div.setAttribute("class", "day" + i);
@@ -257,9 +260,23 @@ function generateDays(valueMonth) {
     slot.setAttribute("value", i);
     slot.appendChild(div);
   }
+  for (let i = 0; i < firstWeek.length; i++) {
+    let k = i + 1;
+    let date = new Date(`${valueYear}-${valueMonth}-${firstWeek[i]}`);
+    let weekDay = date.getDay();
+    if (k === 7) {
+      k = 0;
+    }
+    let printName = ["sun", "mon", "tue", "wed", "thu", "fre", "sat"];
+    weekDayPlace[i].innerHTML = printName[weekDay];
+    console.log(weekDayPlace[i]);
+    console.log(weekDay);
+    k++;
+  }
+  console.log(firstWeek);
+
   lastMonth = monthKey;
   dayLock = true;
-  console.log(monthKey);
 }
 
 //////////////////////////////////

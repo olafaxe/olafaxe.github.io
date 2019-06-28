@@ -5,7 +5,7 @@
   grid-template-areas:
     "close year year year year . ."
     ". month month month month confirm ."
-    "mon tue wed thu fri sat sun"
+    "weekd1 weekd2 weekd3 weekd4 weekd5 weekd6 weekd0"
     "place1 place2 place3 place4 place5 place6 place7"
     "place8 place9 place10 place11 place12 place13 place14"
     "place15 place16 place17 place18 place19 place20 place21"
@@ -37,26 +37,26 @@
 .month {
   grid-area: month;
 }
-.mon {
-  grid-area: mon;
+.weekd1 {
+  grid-area: weekd1;
 }
-.tue {
-  grid-area: tue;
+.weekd2 {
+  grid-area: weekd2;
 }
-.wed {
-  grid-area: wed;
+.weekd3 {
+  grid-area: weekd3;
 }
-.thu {
-  grid-area: thu;
+.weekd4 {
+  grid-area: weekd4;
 }
-.fri {
-  grid-area: fri;
+.weekd5 {
+  grid-area: weekd5;
 }
-.sat {
-  grid-area: sat;
+.weekd6 {
+  grid-area: weekd6;
 }
-.sun {
-  grid-area: sun;
+.weekd0 {
+  grid-area: weekd0;
 }
 .place1 {
   grid-area: place1;

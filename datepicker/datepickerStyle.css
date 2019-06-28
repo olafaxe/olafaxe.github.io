@@ -23,7 +23,7 @@ body {
   height: 40px;
   position: absolute;
   top: 250px;
-  left: 20%;
+  left: 33%;
   cursor: default;
   text-align: center;
 }
@@ -180,6 +180,9 @@ body {
 
   .dname {
     font-size: 10px;
+  }
+  .dateBtn {
+    left: 20%;
   }
   .dateNum {
     font-size: 15px;
