@@ -9,7 +9,43 @@
   }
 }
 
+@keyframes confirm {
+  from {
+    background-color: lightblue;
+    opacity: 0.7;
+  }
+  50% {
+    background-color: rgb(190, 222, 233);
+  }
+  to {
+    background-color: lightblue;
+    opacity: 1;
+  }
+}
+
+@keyframes confirm-text {
+  from {
+    color: #ffffff;
+    opacity: 0.7;
+  }
+  50% {
+    color: lightgreen;
+    opacity: 1;
+  }
+  to {
+    color: #ffffff;
+    opacity: 1;
+  }
+}
+
 .select-date {
   animation: select 1s;
   background-color: gray;
+}
+
+.confirm-click {
+  animation: confirm 1s;
+}
+.confirm-clickText {
+  animation: confirm-text 1s;
 }

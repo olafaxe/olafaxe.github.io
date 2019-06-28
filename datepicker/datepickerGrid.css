@@ -3,8 +3,8 @@
   grid-template-columns: repeat(7, 90px);
   grid-template-rows: repeat(8, 90px);
   grid-template-areas:
-    ". year year year year . close"
-    ". month month month month . ."
+    "close year year year year . ."
+    ". month month month month confirm ."
     "mon tue wed thu fri sat sun"
     "place1 place2 place3 place4 place5 place6 place7"
     "place8 place9 place10 place11 place12 place13 place14"
@@ -25,6 +25,9 @@
   }
 }
 
+.confirm {
+  grid-area: confirm;
+}
 .close {
   grid-area: close;
 }

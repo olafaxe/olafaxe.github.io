@@ -7,6 +7,7 @@ let yearSelect = document.querySelector(".yearSelect");
 let monthSelect = document.querySelector(".monthSelect");
 let getDateBtn = document.querySelector(".dateBtn");
 let closeBtn = document.querySelector(".close");
+let confirmBtn = document.querySelector(".confirm");
 let datePick = dpContainer.querySelectorAll(".date");
 
 let valueYear = "";
@@ -27,7 +28,30 @@ getDateBtn.addEventListener("click", () => {
   dpContainer.style.display = "grid";
 });
 
-closeBtn.addEventListener("click", () => {
+confirmBtn.addEventListener("click", () => {
+  let confirmText = document.querySelector(".confirmText");
+  confirmText.classList.add("confirm-clickText");
+  confirmBtn.classList.add("confirm-click");
+  setTimeout(() => {
+    confirmText.classList.remove("confirm-clickText");
+    confirmBtn.classList.remove("confirm-click");
+  }, 1000);
+  setTimeout(confirmClick, 1000);
+
+  // removeYears();
+  // dpContainer.style.display = "none";
+
+  // if (valueYear === "" || valueMonth === "" || valueDay === "") {
+  //   return;
+  // } else {
+  //   getDateBtn.value = `${valueYear} / ${valueMonth} / ${valueDay}`;
+  // }
+  // removeDays(lastMonth);
+
+  // reset();
+});
+
+function confirmClick() {
   removeYears();
   dpContainer.style.display = "none";
 
@@ -39,7 +63,19 @@ closeBtn.addEventListener("click", () => {
   removeDays(lastMonth);
 
   reset();
-  // console.log("Final date: ", valueYear, valueMonth, valueDay);
+}
+
+closeBtn.addEventListener("click", () => {
+  removeYears();
+  dpContainer.style.display = "none";
+
+  if (dayLock) {
+    removeDays(lastMonth);
+  }
+
+  getDateBtn.value = `get date`;
+
+  reset();
 });
 
 dpContainer.addEventListener("click", () => {});
@@ -48,6 +84,15 @@ yearSelect.addEventListener("click", () => {
   leapYear = false;
   valueYear = yearSelect.value;
   checkLeapYear(valueYear);
+  valueMonth = monthSelect.value;
+  if (dayLock) {
+    removeDays(lastMonth);
+  }
+  if (valueMonth === "") {
+    return;
+  } else {
+    generateDays(valueMonth);
+  }
 });
 
 monthSelect.addEventListener("change", event => {
