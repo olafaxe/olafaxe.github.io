@@ -40,7 +40,7 @@ confirmBtn.addEventListener("mousedown", () => {
 });
 
 function confirmClick() {
-  if (valueYear === "" || valueMonth === "" || valueDay === "") {
+  if (valueDay === "") {
     getDateBtn.innerHTML = `yyyy-mm-dd`;
   } else {
     console.log(
