@@ -41,25 +41,6 @@ confirmBtn.addEventListener("mousedown", () => {
   setTimeout(confirmClick, 1000);
 });
 
-function confirmClick() {
-  let outputYear = valueYear;
-  if (valueDay === "") {
-    yearOutput.innerHTML = `yyyy-mm-dd`;
-  } else {
-    console.log(
-      "types: ",
-      typeof valueYear,
-      typeof valueMonth,
-      typeof valueDay
-    );
-    console.log("print: ", valueYear, valueMonth, valueDay);
-    console.log(outputYear);
-    yearOutput.innerHTML = outputYear + "-" + valueMonth + "-" + valueDay;
-  }
-
-  dpContainer.style.display = "none";
-}
-
 closeBtn.addEventListener("click", () => {
   removeYears();
   dpContainer.style.display = "none";
@@ -69,11 +50,7 @@ closeBtn.addEventListener("click", () => {
   }
 
   getDateBtn.value = `yyyy-mm-dd`;
-
-  reset();
 });
-
-dpContainer.addEventListener("click", () => {});
 
 yearSelect.addEventListener("click", event => {
   let selectedYear = event.target.value;
@@ -141,6 +118,7 @@ for (let i = 0; i < datePick.length; i++) {
 /////////////////////////////////
 ///// FUNCTIONS /////////////////
 /////////////////////////////////
+
 function reset() {
   valueYear = "";
   valueMonth = "";
@@ -155,6 +133,31 @@ function reset() {
     removeDays(lastMonth);
   }
 }
+
+//////////////////////////////////
+
+function confirmClick() {
+  yearOutput.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
+
+  // if (valueDay === "") {
+  //   yearOutput.innerHTML = `yyyy-mm-dd`;
+  // } else {
+  //   console.log(
+  //     "types: ",
+  //     typeof valueYear,
+  //     typeof valueMonth,
+  //     typeof valueDay
+  //   );
+  //   console.log("print: ", valueYear, valueMonth, valueDay);
+  //   console.log(outputYear);
+  //   yearOutput.innerHTML = outputYear + "-" + valueMonth + "-" + valueDay;
+  // }
+
+  dpContainer.style.display = "none";
+}
+
+//////////////////////////////////
+
 function generateYears() {
   let tempY = new Date();
   let year = tempY.getFullYear();
@@ -166,6 +169,8 @@ function generateYears() {
   }
   yearSelect.selectedIndex = "0";
 }
+
+//////////////////////////////////
 
 function removeYears() {
   let tempY = new Date();
@@ -179,6 +184,8 @@ function removeYears() {
   }
 }
 
+//////////////////////////////////
+
 function checkLeapYear(selYear) {
   leapYear = false;
   if ((!(selYear % 4) && selYear % 100) || !(selYear % 400)) {
@@ -186,6 +193,8 @@ function checkLeapYear(selYear) {
   }
   valueYear = selYear;
 }
+
+//////////////////////////////////
 
 function generateMonths() {
   let month = [
@@ -212,6 +221,8 @@ function generateMonths() {
   }
   monthSelect.selectedIndex = "0";
 }
+
+//////////////////////////////////
 
 function generateDays(valueMonth) {
   let monthKey;
@@ -250,6 +261,8 @@ function generateDays(valueMonth) {
   dayLock = true;
   console.log(monthKey);
 }
+
+//////////////////////////////////
 
 function removeDays(monthKey) {
   for (let i = 1; i <= monthKey; i++) {
