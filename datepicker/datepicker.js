@@ -52,16 +52,10 @@ confirmBtn.addEventListener("click", () => {
 });
 
 function confirmClick() {
+  getDateBtn.value = `${valueYear} / ${valueMonth} / ${valueDay}`;
   removeYears();
   dpContainer.style.display = "none";
-
-  if (valueYear === "" || valueMonth === "" || valueDay === "") {
-    return;
-  } else {
-    getDateBtn.value = `${valueYear} / ${valueMonth} / ${valueDay}`;
-  }
   removeDays(lastMonth);
-
   reset();
 }
 
