@@ -53,8 +53,8 @@ closeBtn.addEventListener("click", () => {
 });
 
 yearSelect.addEventListener("click", event => {
-  let selectedYear = event.target.value;
-  checkLeapYear(selectedYear);
+  let valueYear = event.target.value;
+  checkLeapYear(valueYear);
   valueMonth = monthSelect.value;
   if (dayLock) {
     removeDays(lastMonth);
@@ -137,21 +137,18 @@ function reset() {
 //////////////////////////////////
 
 function confirmClick() {
-  yearOutput.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
-
-  // if (valueDay === "") {
-  //   yearOutput.innerHTML = `yyyy-mm-dd`;
-  // } else {
-  //   console.log(
-  //     "types: ",
-  //     typeof valueYear,
-  //     typeof valueMonth,
-  //     typeof valueDay
-  //   );
-  //   console.log("print: ", valueYear, valueMonth, valueDay);
-  //   console.log(outputYear);
-  //   yearOutput.innerHTML = outputYear + "-" + valueMonth + "-" + valueDay;
-  // }
+  if (valueDay === "") {
+    yearOutput.innerHTML = `yyyy-mm-dd`;
+  } else {
+    console.log(
+      "types: ",
+      typeof valueYear,
+      typeof valueMonth,
+      typeof valueDay
+    );
+    console.log("print: ", valueYear, valueMonth, valueDay);
+    yearOutput.innerHTML = valueYear + "-" + valueMonth + "-" + valueDay;
+  }
 
   dpContainer.style.display = "none";
 }
@@ -165,6 +162,7 @@ function generateYears() {
     let opt = document.createElement("option");
     opt.classList.add("tempYear");
     opt.innerHTML = i;
+    opt.value = i;
     yearSelect.appendChild(opt);
   }
   yearSelect.selectedIndex = "0";
