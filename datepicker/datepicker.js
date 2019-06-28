@@ -37,25 +37,19 @@ confirmBtn.addEventListener("click", () => {
     confirmBtn.classList.remove("confirm-click");
   }, 1000);
   setTimeout(confirmClick, 1000);
-
-  // removeYears();
-  // dpContainer.style.display = "none";
-
-  // if (valueYear === "" || valueMonth === "" || valueDay === "") {
-  //   return;
-  // } else {
-  //   getDateBtn.value = `${valueYear} / ${valueMonth} / ${valueDay}`;
-  // }
-  // removeDays(lastMonth);
-
-  // reset();
 });
 
 function confirmClick() {
-  getDateBtn.value = `${valueYear} / ${valueMonth} / ${valueDay}`;
+  if (valueYear === "" || valueMonth === "" || valueDay === "") {
+    getDateBtn.value = `yyyy-mm-dd`;
+  } else {
+    getDateBtn.value = `${valueYear}-${valueMonth}-${valueDay}`;
+  }
   removeYears();
   dpContainer.style.display = "none";
-  removeDays(lastMonth);
+  if (dayLock) {
+    removeDays(lastMonth);
+  }
   reset();
 }
 
@@ -67,7 +61,7 @@ closeBtn.addEventListener("click", () => {
     removeDays(lastMonth);
   }
 
-  getDateBtn.value = `get date`;
+  getDateBtn.value = `yyyy-mm-dd`;
 
   reset();
 });
@@ -95,12 +89,10 @@ monthSelect.addEventListener("change", event => {
     removeDays(lastMonth);
   }
   generateDays(event.target.value);
-  // if (!dayLock) {
-  //   generateDays();
-  // } else {
-  //   removeDays();
-  // }
   valueMonth = monthSelect.value;
+  if (valueMonth < 10) {
+    valueMonth = `0${valueMonth}`;
+  }
   canPickDate = true;
 });
 
@@ -118,6 +110,9 @@ for (let i = 0; i < datePick.length; i++) {
         datePick[i].classList.remove("select-date");
       }, 1000);
       valueDay = datePick[i].textContent;
+      if (valueDay < 10) {
+        valueDay = `0${valueDay}`;
+      }
       lastDay = datePick[i];
     }
 
