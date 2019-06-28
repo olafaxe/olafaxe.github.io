@@ -28,7 +28,7 @@ getDateBtn.addEventListener("click", () => {
   dpContainer.style.display = "grid";
 });
 
-confirmBtn.addEventListener("click", () => {
+confirmBtn.addEventListener("mousedown", () => {
   let confirmText = document.querySelector(".confirmText");
   confirmText.classList.add("confirm-clickText");
   confirmBtn.classList.add("confirm-click");
@@ -41,7 +41,7 @@ confirmBtn.addEventListener("click", () => {
 
 function confirmClick() {
   if (valueYear === "" || valueMonth === "" || valueDay === "") {
-    getDateBtn.textContent = `yyyy-mm-dd`;
+    getDateBtn.innerHTML = `yyyy-mm-dd`;
   } else {
     console.log(
       "types: ",
@@ -50,7 +50,7 @@ function confirmClick() {
       typeof valueDay
     );
     console.log("print: ", valueYear, valueMonth, valueDay);
-    getDateBtn.textContent = `${valueYear}-${valueMonth}-${valueDay}`;
+    getDateBtn.innerHTML = `${valueYear}-${valueMonth}-${valueDay}`;
   }
   removeYears();
   dpContainer.style.display = "none";
