@@ -53,11 +53,8 @@ function confirmClick() {
     console.log("print: ", valueYear, valueMonth, valueDay);
     getDateBtn.innerHTML = `${valueYear}-${valueMonth}-${valueDay}`;
   }
-  removeYears();
+
   dpContainer.style.display = "none";
-  if (dayLock) {
-    removeDays(lastMonth);
-  }
 }
 
 closeBtn.addEventListener("click", () => {
@@ -148,6 +145,11 @@ function reset() {
   lastMonth;
   canPickDate = false;
   leapYear = false;
+  removeYears();
+  dpContainer.style.display = "none";
+  if (dayLock) {
+    removeDays(lastMonth);
+  }
 }
 function generateYears() {
   let tempY = new Date();
