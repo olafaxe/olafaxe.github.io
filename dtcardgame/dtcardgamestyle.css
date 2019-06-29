@@ -22,9 +22,26 @@
 /**** gameboard styling ****/
 /***************************/
 .grid_gameboard-container {
-  background-color: burlywood;
+  background-color: #a5804f;
 }
 
+.gameboard-inner {
+  background-color: #deb887;
+}
+
+.gameboard-inner-opp {
+  background-color: #d8c5ac;
+}
+
+.gameboard-inner-ts {
+  background-color: #d8c5ac;
+}
+.gameboard-inner-ts_ts {
+  background-color: #beaa8e;
+}
+.gameboard-inner-player {
+  background-color: #d8c5ac;
+}
 /***************************/
 /*** playerhand styling ****/
 /***************************/
