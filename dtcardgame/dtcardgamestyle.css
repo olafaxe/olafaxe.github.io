@@ -1,0 +1,37 @@
+/***************************/
+/******* menu styling ******/
+/***************************/
+
+.grid_menu-container {
+  background-color: grey;
+}
+
+/***************************/
+/***** sidebar styling *****/
+/***************************/
+
+.grid_sidebar-container {
+  background-color: #cce0e7;
+}
+
+.sidebar-content {
+  background-color: #add8e6;
+}
+
+/***************************/
+/**** gameboard styling ****/
+/***************************/
+.grid_gameboard-container {
+  background-color: burlywood;
+}
+
+/***************************/
+/*** playerhand styling ****/
+/***************************/
+
+.grid_playerhand-container {
+  background-color: #b4ebb4;
+}
+.playerhand-content {
+  background-color: #90ee90;
+}
