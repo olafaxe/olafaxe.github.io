@@ -23,6 +23,8 @@
 /***************************/
 .grid_gameboard-container {
   background-color: #a5804f;
+  box-sizing: border-box;
+  border: 5px solid rgb(36, 35, 35);
 }
 
 .gameboard-inner {
