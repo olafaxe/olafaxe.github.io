@@ -1,0 +1,38 @@
+.dnd-box1 {
+  background-color: #cccccc;
+}
+
+.dnd-box2 {
+  background-color: #cccccc;
+}
+
+.item-drag {
+  background-color: #ffffff;
+}
+
+.item-locked {
+  background-color: lightgrey;
+}
+
+.item-dragOp {
+  background-color: #b336364b;
+}
+
+.item-dragPl {
+  background-color: rgba(30, 30, 97, 0.13);
+}
+
+#one {
+  background-color: red;
+}
+
+#two {
+  background-color: blue;
+}
+
+#three {
+  background-color: lightcoral;
+}
+#four {
+  background-color: darkblue;
+}

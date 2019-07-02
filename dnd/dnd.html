@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="dndstyle.css" />
+    <link rel="stylesheet" href="dndgrid.css" />
+
+    <title>Drag n Drop demo</title>
+  </head>
+  <body>
+    <div class="dnd_container">
+      <div
+        class="dropbox_container dnd-box1"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      >
+        <div class="item-dragOp item-drag">
+          <div
+            id="one"
+            class="dgb_box"
+            draggable="true"
+            ondragstart="drag(event)"
+          ></div>
+        </div>
+        <div class="item-locked"><h1>NO DROP ZONE</h1></div>
+        <div class="item-dragPl item-drag">
+          <div
+            id="two"
+            class="dgb_box"
+            draggable="true"
+            ondragstart="drag(event)"
+          ></div>
+        </div>
+      </div>
+
+      <div
+        class="dropbox_container dnd-box2"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      >
+        <div class="item-dragOp item-drag">
+          <div
+            id="three"
+            class="dgb_box"
+            draggable="true"
+            ondragstart="drag(event)"
+          ></div>
+        </div>
+        <div class="item-locked"><h1>NO DROP ZONE</h1></div>
+        <div class="item-dragPl item-drag">
+          <div
+            id="four"
+            class="dgb_box"
+            draggable="true"
+            ondragstart="drag(event)"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="dnd.js"></script>
+  </body>
+</html>
