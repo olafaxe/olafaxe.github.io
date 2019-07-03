@@ -36,3 +36,23 @@
 #four {
   background-color: darkblue;
 }
+
+.target-hl {
+  animation: targets 1s infinite;
+}
+
+.target-current {
+  animation: targets 0.3s infinite;
+}
+
+@keyframes targets {
+  from {
+    background-color: #ffffff00;
+  }
+  50% {
+    background-color: #ffffffad;
+  }
+  to {
+    background-color: #ffffff00;
+  }
+}
