@@ -118,16 +118,16 @@ function newLife() {
 function strike() {
   strikes++;
   if (strikes === 1) {
-    document.querySelector(".lifebar_three").classList.remove("lifebar-heart");
     document.querySelector(".lifebar_three").classList.add("lifebar-skull");
+    document.querySelector(".lifebar_three").classList.remove("lifebar-heart");
   }
   if (strikes === 2) {
-    document.querySelector(".lifebar_two").classList.remove("lifebar-heart");
     document.querySelector(".lifebar_two").classList.add("lifebar-skull");
+    document.querySelector(".lifebar_two").classList.remove("lifebar-heart");
   }
   if (strikes === 3) {
-    document.querySelector(".lifebar_one").classList.remove("lifebar-heart");
     document.querySelector(".lifebar_one").classList.add("lifebar-skull");
+    document.querySelector(".lifebar_one").classList.remove("lifebar-heart");
   }
 }
 function startGame() {
