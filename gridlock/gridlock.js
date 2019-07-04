@@ -68,6 +68,7 @@ gridBox.addEventListener("mousedown", actionClickDebounce);
 ////////////////////////7
 
 startButton.addEventListener("click", event => {
+  newLife();
   highScorifier();
   scoreOutput.innerHTML = "";
   scoreActual = [];
@@ -105,7 +106,30 @@ startButton.addEventListener("click", event => {
 ////////////////////////
 ///////FUNCTIONS////////
 ////////////////////////
+function newLife() {
+  document.querySelector(".lifebar_three").classList.remove("lifebar-skull");
+  document.querySelector(".lifebar_three").classList.add("lifebar-heart");
+  document.querySelector(".lifebar_two").classList.remove("lifebar-skull");
+  document.querySelector(".lifebar_two").classList.add("lifebar-heart");
+  document.querySelector(".lifebar_one").classList.remove("lifebar-skull");
+  document.querySelector(".lifebar_one").classList.add("lifebar-heart");
+}
 
+function strike() {
+  strikes++;
+  if (strikes === 1) {
+    document.querySelector(".lifebar_three").classList.remove("lifebar-heart");
+    document.querySelector(".lifebar_three").classList.add("lifebar-skull");
+  }
+  if (strikes === 2) {
+    document.querySelector(".lifebar_two").classList.remove("lifebar-heart");
+    document.querySelector(".lifebar_two").classList.add("lifebar-skull");
+  }
+  if (strikes === 3) {
+    document.querySelector(".lifebar_one").classList.remove("lifebar-heart");
+    document.querySelector(".lifebar_one").classList.add("lifebar-skull");
+  }
+}
 function startGame() {
   timeSetter();
   clickLock = false;
@@ -152,9 +176,13 @@ function timeSetter() {
 function timer() {
   scoreNum--;
   if (scoreNum === 0) {
+    gridBox.classList.add("timeOut");
+    setTimeout(() => {
+      gridBox.classList.remove("timeOut");
+    }, 1000);
     tempArr.pop();
     scoreNum = 100;
-    strikes++;
+    strike();
     timeStopper();
     let timedOut = true;
     if (strikes === 3) {
@@ -270,7 +298,7 @@ function gameLose(boxSelect) {
 ////////////////////////////////////////
 
 function missClick(boxSelect, targetBox) {
-  strikes++;
+  strike();
   remove = true;
   boxSelect.classList.add("miss");
   setTimeout(() => {

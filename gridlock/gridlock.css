@@ -90,6 +90,29 @@ body {
   cursor: default;
 }
 
+.lifebar_cont {
+  display: flex;
+}
+
+.lifebar {
+  flex: 1;
+}
+
+.lifebar-heart {
+  content: url("img/heart.svg");
+  width: 50px;
+  height: 50px;
+}
+
+.lifebar-skull {
+  animation-name: fadein-lifebar;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  content: url("img/skull.svg");
+  width: 50px;
+  height: 50px;
+}
+
 @media screen and (max-width: 450px) {
   .game-text {
     font-size: 50px;
@@ -285,6 +308,27 @@ body {
   }
 }
 
+@keyframes fadeout-lifebar {
+  from {
+    content: url("img/heart.svg");
+    opacity: 1;
+  }
+  to {
+    content: url("img/heart.svg");
+    opacity: 0;
+  }
+}
+@keyframes fadein-lifebar {
+  from {
+    content: url("img/halfskull.svg");
+    opacity: 0.5;
+  }
+  to {
+    content: url("img/halfskull.svg");
+    opacity: 1;
+  }
+}
+
 @keyframes loading {
   from {
     color: #ffffff;
@@ -306,6 +350,21 @@ body {
   }
   to {
     transform: translateX(-115%);
+  }
+}
+
+@keyframes timeout-miss {
+  from {
+    background-color: #ff000077;
+    box-shadow: 0px 0px 15px 0px #ff000077;
+  }
+  50% {
+    background-color: #f00;
+    box-shadow: 0px 0px 15px 0px #f00;
+  }
+  from {
+    background-color: #ff000077;
+    box-shadow: 0px 0px 15px 0px #ff000077;
   }
 }
 
@@ -331,4 +390,8 @@ body {
   animation-name: gameover, fadein;
   animation-duration: 4s, 4s;
   animation-iteration-count: infinite, 1;
+}
+
+.timeOut {
+  animation: timeout-miss 1s infinite;
 }
