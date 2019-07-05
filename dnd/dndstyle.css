@@ -22,19 +22,21 @@
   background-color: rgba(30, 30, 97, 0.13);
 }
 
-#one {
+.item-dragOp div {
   background-color: red;
 }
 
-#two {
+.item-dragPl div {
   background-color: blue;
 }
 
-#three {
-  background-color: lightcoral;
+.dgb_box {
+  opacity: 0.3;
+  transition: opacity 1s;
 }
-#four {
-  background-color: darkblue;
+
+.dgb_box:hover {
+  opacity: 1;
 }
 
 .target-hl {
